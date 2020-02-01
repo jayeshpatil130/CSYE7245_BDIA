@@ -133,7 +133,7 @@ def create_text_files():
       string = text_list[j][1]
       new_str = re.sub('[^a-zA-Z]', ' ', string)
       new_str2 = ' '.join(word for word in new_str.split(' ') if len(word) > 1)
-      open('text_files/TextFiles%s.txt'%j, 'w', encoding='utf-8').write(string)
+      open('./TextFiles%s.txt'%j, 'w', encoding='utf-8').write(string)
 
 create_text_files()
 
@@ -205,24 +205,25 @@ def split_words(text):
 
 #Create a pipeline
 plOps = beam.Pipeline(options=PipelineOptions())
+options.view_as(StandardOptions).runner = 'DirectRunner'
 
 txt_files = (
-          plOps | 'Read lines' >> beam.io.ReadFromText('text_files/*.txt')
+          plOps | 'Read lines' >> beam.io.ReadFromText('TextFiles0.txt')
       )
 
-      clean_regex = (
+clean_regex = (
           txt_files | 'Regex' >> beam.Regex.replace_all(r'[^a-zA-Z]', ' ')
       )
 
-      split_word = (
+split_word = (
           clean_regex | 'Flatten Words' >> beam.FlatMap(split_words)
       )
 
-      remove_space = (
+remove_space = (
           split_word | 'Remove blanks' >> beam.Filter(lambda x: x.strip())
       )
        
-      word_counts = (
+word_counts = (
           remove_space | 'Word count' >> beam.ParDo(Word_count())
                        | 'Write word count' >> beam.io.WriteToText('word_count', file_name_suffix='.txt')
       )
