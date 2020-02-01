@@ -7,7 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1dZe0nO1Mz7WLXH640WxrfI4FEmsH2k2c
 """
 
-!pip install apache_beam
+
 
 import apache_beam as beam
 
@@ -21,7 +21,7 @@ from apache_beam.options.pipeline_options import  PipelineOptions
 root = logging.getLogger()
 root.setLevel(logging.INFO)
 
-!pip install tokenizers
+
 
 try:
     import urllib.request as urllib2
