@@ -1,0 +1,22 @@
+# we start with tensorflow docker image
+ARG BASE_IMG=tensorflow/tensorflow:2.1.0-py3-jupyter
+FROM $BASE_IMG
+
+
+#Use working directory /app
+WORKDIR /app
+
+#Copy all the content of current directory to /app
+ADD . /app
+
+
+# pip3 by default as the base image is python
+RUN pip install --upgrade pip setuptools wheel && \
+    pip install -r requirements.txt
+
+# set the default user
+# USER $Team_2
+
+ENTRYPOINT [ "python" ]
+
+CMD [ "bdia-server/app/app.py" ]
