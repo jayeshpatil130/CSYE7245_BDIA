@@ -1,4 +1,4 @@
-## ML Pipeline to train and deploy sentiment analysis model as a Service
+## ML Pipeline to train and deploy sentiment analysis model as a service
 How to train and deploy a machine learning pipeline in production.
 
 ## Report
