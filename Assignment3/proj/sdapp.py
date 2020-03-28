@@ -4,49 +4,82 @@ from .celery import app
 import pandas as pd
 import sdgym
 import numpy as np
+from google.cloud import storage
 #from sdgym import load_dataset, evaluate
 
 from sdgym.synthesizers import IndependentSynthesizer, CLBNSynthesizer, IdentitySynthesizer, MedganSynthesizer, PrivBNSynthesizer, TableganSynthesizer, TVAESynthesizer,  UniformSynthesizer, VEEGANSynthesizer
 from sdgym.evaluate import evaluate
 from sdgym.data import load_dataset
 
+storage_client = storage.Client.from_service_account_json('/<path-to-credentials>/<appl_credentials>.json')
+
+	# Define storage bucket with name
+bucket = storage_client.get_bucket('datateam2')
 
 @app.task
 def synt():
+	
+    df = pd.read_csv("gs://datateam2/input.csv", dtype='str', header=-1)
+    #df = df.apply(lambda x: x.str.strip(' \t.'))
 
-    df = pd.read_csv('input.csv')
-    df.to_numpy
-    jsonParse = '{ "columns": ['
-    for (columnName, columnData) in df.iteritems():
-        print('Column Name : ', columnName)
-#    print('Column Contents : ', columnData.values)
-        if (pd.to_numeric(df[columnName], errors='coerce').notnull().all()):
-            print ('Numeric')
-            jsonParse = jsonParse + '{"max": ' + str(columnData.max()) + ',' + '"min": ' + str(columnData.min()) + ',' + '"name": "' + columnName + '" , "type": "continuous"},'    
-            print (columnData.max())
-            print (columnData.min())
-        
+    col_type = [
+        ("gender", CATEGORICAL),
+        ("race/ethnicity", ORDINAL, ["group A", "group B", "group B"]),
+        ("parental level of education", CATEGORICAL),
+        ("lunch", CATEGORICAL),
+        ("test preparation course", CATEGORICAL),
+        ("math score", CONTINUOUS),
+        ("reading score", CONTINUOUS),
+        ("writing score", CONTINUOUS)
+    ]
+
+    meta = []
+    for id_, info in enumerate(col_type):
+        if info[1] == CONTINUOUS:
+            meta.append({
+                "name": info[0],
+                "type": info[1],
+                "min": np.min(df.iloc[:, id_].values.astype('float')),
+                "max": np.max(df.iloc[:, id_].values.astype('float'))
+            })
         else:
-            print ('NonNumeric')
-            jsonParse = jsonParse +  ' {"i2s": ['
-            for i in columnData.unique():
-                print (i)
-                jsonParse = jsonParse + '"' + i + '",'
-        
-            jsonParse = jsonParse[:-1] + '],' + '"name": "' + columnName + '", "size": '  + str(len(columnData.unique())) + ' , "type": "categorical"},'
+            if info[1] == CATEGORICAL:
+                value_count = list(dict(df.iloc[:, id_].value_counts()).items())
+                value_count = sorted(value_count, key=lambda x: -x[1])
+                mapper = list(map(lambda x: x[0], value_count))
+            else:
+                mapper = info[2]
+
+            meta.append({
+                "name": info[0],
+                "type": info[1],
+                "size": len(mapper),
+                "i2s": mapper
+            })
 
 
-    jsonParse = jsonParse[:-1] + '], "problem_type": "binary_classification"}'
-    final_dictionary = eval(jsonParse) 
+    tdata = project_table(df, meta)
 
-    with open('metadata.json', 'w') as outfile:
-        json.dump(final_dictionary, outfile)
+    np.random.seed(0)
+    np.random.shuffle(tdata)
+
+    t_train = tdata[:-10000]
+    t_test = tdata[-10000:]
+	
+	# Initialize a storage client
+	storage_client = storage.Client.from_service_account_json('/<path-to-credentials>/<appl_credentials>.json')
+
+	# Define storage bucket with name
+	bucket = storage_client.get_bucket('datateam2')
+
+    name = "student"
+    with open("student.json", 'w') as f:
+        blob = bucket.blob(json.dump(meta, f, sort_keys=True, indent=4, separators=(',', ': '))_
+		blob.upload_from_filename('student.json', content_type='json')
+	blob = bucket.blob(np.savez("student.npz"), train=t_train, test=t_test))
+	blob = bucket.upload_from_filename(np.savez("student.npz"), train=t_train, test=t_test))
+	return name, meta
     
-    t_train = df[:-500]
-    t_test = df[-500:]
-    np.savez("metadata.npz", train=t_train, test=t_test)
-    
-
 
 @app.task
 def independent_benchmark(json = 'adult'):
