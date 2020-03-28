@@ -14,10 +14,18 @@ Postman\
 Flask
 
 ## Setup For Running this Project:
+### Step 1:
 
+Clone this repo and setup celery http://docs.celeryproject.org/en/latest/index.html <br>
+Run this using command: celery -A proj worker -l info and run the tasks.
 
+### Step 2:
 
+Build an API service using Flask (app) and create a docker image that will take an input json
 
+### Step 3:
+
+You can unit test this using streamlit https://docs.streamlit.io/ . We have a file called streamlit which takes and input and run the command streamlit run filename.py
 
 
 ## Collaborators
