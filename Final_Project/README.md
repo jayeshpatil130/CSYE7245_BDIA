@@ -1,3 +1,5 @@
-# CSYE7245_BDIA
-## Assignment1
-### Developed a data pipeline to accomplish a scraping task and the goal was to ingest, process and store it into google buckets
+## Project
+### Stock Prediction using Financial News Sentiment Analysis and Time Series Analysis
+
+## Project Proposal:
+https://codelabs-preview.appspot.com/?file_id=1TyFR1jlvE59nKuilDi-f81CGV9NqJZscQYVdNB1wxhE#0
