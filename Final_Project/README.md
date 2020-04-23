@@ -17,6 +17,7 @@ Project
 │   └── WSJScrapper_Content.py
 ├── Dockerfile: instruction for docker image construction.
 ├── requirements.txt: dependencies.
+```
 
 
 
