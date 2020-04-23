@@ -5,6 +5,18 @@
 https://codelabs-preview.appspot.com/?file_id=1TyFR1jlvE59nKuilDi-f81CGV9NqJZscQYVdNB1wxhE#0
 
 ## Project Structure
+```k
+Project
+├── README.md
+├── Config file
+├── Company Keywords
+│   └── keywords to categorize the articles
+├── Data: Scripts to scrape the data and api to get stock data
+│   └── StockAPI_Alphavantage.py
+│   └── WSJScrapper_Headline.py
+│   └── WSJScrapper_Content.py
+├── Dockerfile: instruction for docker image construction.
+├── requirements.txt: dependencies.
 
 
 
