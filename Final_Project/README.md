@@ -5,7 +5,7 @@
 https://codelabs-preview.appspot.com/?file_id=1TyFR1jlvE59nKuilDi-f81CGV9NqJZscQYVdNB1wxhE#0
 
 ## Project Structure
-```k
+```
 Project
 ├── README.md
 ├── Config file
