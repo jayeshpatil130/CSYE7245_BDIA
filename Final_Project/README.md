@@ -23,6 +23,13 @@ Project
 
 ## Getting Started
 
+#### Prerequisites
+1. Python3.5+
+2. Docker
+3. Flask
+4. AWS
+
+
 #### Configuring the AWS CLI
 You need to retrieve AWS credentials that allow your AWS CLI to access AWS resources.
 
