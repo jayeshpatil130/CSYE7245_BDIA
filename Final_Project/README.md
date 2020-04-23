@@ -34,3 +34,16 @@ You need to retrieve AWS credentials that allow your AWS CLI to access AWS resou
 6. Get AWS Key and create a config file
 7. Go to https://www.alphavantage.co and get API key to retrive the stock data and paste it in a config file.
 
+
+
+
+
+## Authors
+<b>[Sharvari Karnik](https://www.linkedin.com/in/sharvarikarnik25/)</b> 
+
+<b>[Kunal Jaiswal](https://www.linkedin.com/in/kunaljaiswal4393/)</b> 
+
+<b>[Jayesh Patil](https://www.linkedin.com/in/jayeshpatil130/)</b> 
+
+## License
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
