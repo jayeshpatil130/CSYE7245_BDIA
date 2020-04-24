@@ -11,5 +11,5 @@ ML Pipeline to train and deploy sentiment analysis model as a service
 Data pipeline to train and benchmark multiple Synthetic data generators and then deploy them in production
 
 ## Project
-Stock Prediction using Financial News Sentiment Analysis and Time Series Analysis
+Stock Prediction using Financial News Sentiment Analysis and Time Series Forecasting
 
