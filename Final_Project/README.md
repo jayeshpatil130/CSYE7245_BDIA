@@ -21,6 +21,7 @@ Project
 │   └── StockAPI_Alphavantage.py
 │   └── WSJScrapper_Headline.py
 │   └── WSJScrapper_Content.py
+│   └── sentiment_score.py
 ├── Dockerfile: instruction for docker image construction.
 ├── requirements.txt: dependencies.
 ├── GlueScripts: Scripts for AWS Gule 
@@ -57,7 +58,12 @@ You need to retrieve AWS credentials that allow your AWS CLI to access AWS resou
 6. Get AWS Key and create a config file
 7. Go to https://www.alphavantage.co and get API key to retrive the stock data and paste it in a config file.
 
-#### 
+#### Steps to get Data
+1. git clone the repo https://github.com/jayeshpatil130/CSYE7245_BDIA/tree/master/Final_Project
+2. In data folder we have file to run the api and Scrapper function this are aslo sechduled with AWS Lambda in AWS console to run daily
+3. This will get us the data in S3 bucket.
+4. Now we will have a Data in S3 bucket now run AWS gule scripts or open the glue job from AWS console to perform and classify the data and to create a etl workflow which will update our redshift datawarehouse.
+
 
 #### AWS Forecast Setup:
 1. Sign in to the AWS Management Console and open the Amazon Forecast console.
@@ -77,7 +83,7 @@ s3://<name of your S3 bucket>/<folder path>/<filename.csv>
 #### Deploying the weba pp on heroku:
 1. Download heroku toolbelt from  https://toolbelt.heroku.com/
 2. Creating requirements.txt in which the dependencies for the package are listed on each line in the same folder as app.py. We can list the following:
-Flask
+Flask,
 gunicorn
 3. Creating runtime.txt which tells Heroku which Python version to use. We have used python-3.5.1
 4. Create a Procfile. It is a text file in the root directory of the application that defines process types and explicitly declares what command should be executed to start our app. It can contain:
