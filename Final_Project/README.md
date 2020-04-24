@@ -7,6 +7,9 @@ https://codelabs-preview.appspot.com/?file_id=1TyFR1jlvE59nKuilDi-f81CGV9NqJZscQ
 ## Project Report:
 https://codelabs-preview.appspot.com/?file_id=1mx82bA7TVTtCWliCPi2ZfzDeMAPvKqDgOvrzML4R3DE#0
 
+## Web Application:
+https://stock-prediction-analysis.herokuapp.com/
+
 ## Project Structure
 ```
 Project
