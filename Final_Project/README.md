@@ -23,6 +23,15 @@ Project
 │   └── WSJScrapper_Content.py
 ├── Dockerfile: instruction for docker image construction.
 ├── requirements.txt: dependencies.
+├── GlueScripts: Scripts for AWS Gule 
+│   └── Pyspark scripts for each pipeline
+├── webapp: code for flask webapp
+│   └── templates: html and css templates for web app
+│   └── app.py
+│   └── Procfile
+│   └── runtime.txt
+│   └── License
+├── Readme.MD
 ```
 
 
@@ -47,6 +56,51 @@ You need to retrieve AWS credentials that allow your AWS CLI to access AWS resou
 5. Press Download Key File to download a CSV file that contains your new AccessKeyId and SecretKey. Keep this file somewhere where you can find it easily
 6. Get AWS Key and create a config file
 7. Go to https://www.alphavantage.co and get API key to retrive the stock data and paste it in a config file.
+
+#### 
+
+#### AWS Forecast Setup:
+1. Sign in to the AWS Management Console and open the Amazon Forecast console.
+2. On the Amazon Forecast home page, choose Create dataset group.
+3. On the Create dataset group page, for Dataset group details, provide the Dataset group name and Forecasting domain – From the drop-down menu, choose Custom.
+4. On the Create target time series dataset page, for Dataset details, provide the following information:
+5. Dataset name – Enter a name for your dataset.
+6. Frequency of your data – In our case, it was daily.
+7. On the Import target time series data page, for Dataset import job details, provide the following information:
+8. Dataset import job name – Enter a name for your dataset.
+9. Timestamp format – We chose  (yyyy-MM-dd). The format must be consistent with the input time series data.
+10. IAM role – Keep the default Enter a custom IAM role ARN.
+11. Data Location - se the following format to enter the location of your .csv file on Amazon S3:
+s3://<name of your S3 bucket>/<folder path>/<filename.csv>
+12. Import Dataset we created, Train the Predictor by choosing the algorithm(ARIMA in our case) and generate the forecast.
+  
+#### Deploying the weba pp on heroku:
+1. Download heroku toolbelt from  https://toolbelt.heroku.com/
+2. Creating requirements.txt in which the dependencies for the package are listed on each line in the same folder as app.py. We can list the following:
+Flask
+gunicorn
+3. Creating runtime.txt which tells Heroku which Python version to use. We have used python-3.5.1
+4. Create a Procfile. It is a text file in the root directory of the application that defines process types and explicitly declares what command should be executed to start our app. It can contain:
+web: gunicorn app:app --log-file=-
+5. We need to create a GitHub repository with app.py and these essential files along with.gitignore(Although it is not necessary it is recommended to include it)
+6. Now our Flask app folder contains the this file structure
+  ├── .gitignore
+  ├── Procfile
+  ├── app.py
+  ├── requirements.txt
+  └── runtime.txt
+7. Go on Heroku website and after logging in click on New → Create New App.
+Enter ”App name” and select the region and click on Create App and in the Deploy tab, select GitHub in Deployment method then Select the repository name and click Connect
+8. Select Enable Automatic Deploys so that whenever we push changes to our GitHub it reflects on our app and Click Deploy Branch  which will deploy the current state of the branch.
+If everything is successful it shows an Open App button. We can now open the app deployed on Heroku
+
+
+#### Docker setup for app:
+1. git clone the repo https://github.com/jayeshpatil130/CSYE7245_BDIA/tree/master/Final_Project
+2. docker build -t stock_app:1.0 . -- this references the Dockerfile at . (current directory) to build our Docker image & tags the docker image with stock_app:1.0
+3. Run docker images & find the image id of the newly built Docker image, OR run docker images | grep stock_app:1.0 | awk '{print $3}'
+4. docker run -it --rm -p 5000:5000 {image_id} stock_app:1.0 -- this refers to the image we built to run a Docker container.
+5. You check it on 0.0.0.0:5000 or using docker-machine ip (http://192.168.99.100:5000/)
 
 
 
