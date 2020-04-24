@@ -92,11 +92,13 @@ gunicorn
 web: gunicorn app:app --log-file=-
 5. We need to create a GitHub repository with app.py and these essential files along with.gitignore(Although it is not necessary it is recommended to include it)
 6. Now our Flask app folder contains the this file structure
-  ├── .gitignore
-  ├── Procfile
-  ├── app.py
-  ├── requirements.txt
-  └── runtime.txt
+```
+ ├── .gitignore
+ ├── Procfile
+ ├── app.py
+ ├── requirements.txt
+ │── runtime.txt
+ ```
 7. Go on Heroku website and after logging in click on New → Create New App.
 Enter ”App name” and select the region and click on Create App and in the Deploy tab, select GitHub in Deployment method then Select the repository name and click Connect
 8. Select Enable Automatic Deploys so that whenever we push changes to our GitHub it reflects on our app and Click Deploy Branch  which will deploy the current state of the branch.
@@ -109,7 +111,6 @@ If everything is successful it shows an Open App button. We can now open the app
 3. Run docker images & find the image id of the newly built Docker image, OR run docker images | grep stock_app:1.0 | awk '{print $3}'
 4. docker run -it --rm -p 5000:5000 {image_id} stock_app:1.0 -- this refers to the image we built to run a Docker container.
 5. You check it on 0.0.0.0:5000 or using docker-machine ip (http://192.168.99.100:5000/)
-
 
 
 
