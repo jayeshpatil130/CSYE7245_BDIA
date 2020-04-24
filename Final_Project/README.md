@@ -21,7 +21,7 @@ Project
 │   └── StockAPI_Alphavantage.py
 │   └── WSJScrapper_Headline.py
 │   └── WSJScrapper_Content.py
-│   └── sentiment_score.py
+│   └── sentiment_analysis.py
 ├── Dockerfile: instruction for docker image construction.
 ├── requirements.txt: dependencies.
 ├── GlueScripts: Scripts for AWS Gule 
@@ -64,6 +64,8 @@ You need to retrieve AWS credentials that allow your AWS CLI to access AWS resou
 3. This will get us the data in S3 bucket.
 4. Now we will have a Data in S3 bucket now run AWS gule scripts or open the glue job from AWS console to perform and classify the data and to create a etl workflow which will update our redshift datawarehouse.
 
+#### Aws Comprehend:
+1. In this repo we have python script for sentiment_analaysis we need to run that in order to get sentiment score of the scrapped data which will trigger the aws gule workflow to run the gule jobs which add the data in redshift data warehouse.
 
 #### AWS Forecast Setup:
 1. Sign in to the AWS Management Console and open the Amazon Forecast console.
@@ -80,7 +82,7 @@ You need to retrieve AWS credentials that allow your AWS CLI to access AWS resou
 s3://<name of your S3 bucket>/<folder path>/<filename.csv>
 12. Import Dataset we created, Train the Predictor by choosing the algorithm(ARIMA in our case) and generate the forecast.
   
-#### Deploying the weba pp on heroku:
+#### Deploying the webapp on heroku:
 1. Download heroku toolbelt from  https://toolbelt.heroku.com/
 2. Creating requirements.txt in which the dependencies for the package are listed on each line in the same folder as app.py. We can list the following:
 Flask,
