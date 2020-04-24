@@ -28,6 +28,7 @@ Project
 2. Docker
 3. Flask
 4. AWS
+5. Heroku
 
 
 #### Configuring the AWS CLI
