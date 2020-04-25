@@ -22,6 +22,7 @@ Project
 │   └── WSJScrapper_Headline.py
 │   └── WSJScrapper_Content.py
 │   └── sentiment_analysis.py
+│   └── test_data.csv
 ├── Dockerfile: instruction for docker image construction.
 ├── requirements.txt: dependencies.
 ├── GlueScripts: Scripts for AWS Gule 
