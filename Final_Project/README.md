@@ -111,9 +111,10 @@ If everything is successful it shows an Open App button. We can now open the app
 2. docker build -t stock_app:1.0 . -- this references the Dockerfile at . (current directory) to build our Docker image & tags the docker image with stock_app:1.0
 3. Run docker images & find the image id of the newly built Docker image, OR run docker images | grep stock_app:1.0 | awk '{print $3}'
 4. docker run -it --rm -p 5000:5000 {image_id} stock_app:1.0 -- this refers to the image we built to run a Docker container.
-5. You check it on 0.0.0.0:5000 or using docker-machine ip (http://192.168.99.100:5000/)
 
-
+### Tests:
+1. Heroku- Once App is deployed, you can spin the app from your browser, to see if its working or not.
+2. Docker- You test it on 0.0.0.0:5000 or using docker-machine ip (eg : http://192.168.99.100:5000/)
 
 
 ## Authors
