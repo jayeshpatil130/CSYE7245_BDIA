@@ -59,11 +59,11 @@ You need to retrieve AWS credentials that allow your AWS CLI to access AWS resou
 6. Get AWS Key and create a config file
 7. Go to https://www.alphavantage.co and get API key to retrive the stock data and paste it in a config file.
 
-#### Steps to get Data
+#### Steps to get the Data
 1. git clone the repo https://github.com/jayeshpatil130/CSYE7245_BDIA/tree/master/Final_Project
-2. In data folder we have file to run the api and Scrapper function this are aslo sechduled with AWS Lambda in AWS console to run daily
+2. In "data" folder we have file to run the api and the Scrapper function. This is also scheduled with AWS Lambda in AWS console to run daily and can be modified as per the need.
 3. This will get us the data in S3 bucket.
-4. Now we will have a Data in S3 bucket now run AWS gule scripts or open the glue job from AWS console to perform and classify the data and to create a etl workflow which will update our redshift datawarehouse.
+4. Now, We will have a Data in S3 bucket. Now use the AWS glue scripts to build Glue jobs to extract data from S3 buckets, transform it and load it into the Redshift Data Warehouse.
 
 #### Aws Comprehend:
 1. In this repo we have python script for sentiment_analaysis we need to run that in order to get sentiment score of the scrapped data which will trigger the aws gule workflow to run the gule jobs which add the data in redshift data warehouse.
