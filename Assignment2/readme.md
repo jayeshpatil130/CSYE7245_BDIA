@@ -9,7 +9,7 @@ https://codelabs-preview.appspot.com/?file_id=1WNt8YYhNIGRSNJVnYj8dVWI6AlLNzXr-W
 Things you need to install:
 
 Python3.5+\
-AWS EC2, S3\
+AWS S3\
 IBM Watson Natural Language understanding api 
 https://cloud.ibm.com/apidocs/natural-language-understanding/natural-language-understanding \
 Docker\
