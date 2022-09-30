@@ -8,7 +8,7 @@ exrex==0.10.5
 Faker==4.0.2
 graphviz==0.13.2
 jmespath==0.9.5
-joblib==0.14.1
+joblib==1.2.0
 kiwisolver==1.1.0
 matplotlib==3.2.0
 networkx==2.4
